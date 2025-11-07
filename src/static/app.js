@@ -20,11 +20,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // Build participants list (avatar initials + email). If none, show a friendly prompt.
+        const participants = details.participants || [];
+        let participantsListHTML = "";
+        if (participants.length) {
+          participantsListHTML = "<ul>";
+          participants.forEach((p) => {
+            // Derive simple initials from the part before the '@' (split on dots/underscores/dashes)
+            const namePart = p.split("@")[0] || "";
+            const initials = namePart
+              .split(/[.\-_]/)
+              .map((s) => (s[0] || "").toUpperCase())
+              .slice(0, 2)
+              .join("");
+            participantsListHTML += `<li><span class="avatar">${initials}</span><span class="participant-email">${p}</span></li>`;
+          });
+          participantsListHTML += "</ul>";
+        } else {
+          participantsListHTML = `<ul class="no-participants"><li><span class="info">Be the first to sign up</span></li></ul>`;
+        }
+
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <div class="participants">
+            <h5>Participants</h5>
+            ${participantsListHTML}
+          </div>
         `;
 
         activitiesList.appendChild(activityCard);

@@ -142,3 +142,57 @@ footer {
   padding: 20px;
   color: #666;
 }
+
+.participants {
+  margin-top: 12px;
+}
+
+.participants h5 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.participants ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.participants li {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.participants li:first-child {
+  border-top: none;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #1a237e;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 10px;
+  font-size: 12px;
+  flex: 0 0 32px;
+}
+
+.participant-email {
+  color: #555;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.no-participants .info {
+  color: #777;
+  font-style: italic;
+  padding-left: 42px; /* align with where emails would be (avatar width + gap) */
+}
